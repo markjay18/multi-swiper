@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Swiper demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+  <!-- Demo styles -->
+  <style>
+    html,
+    body {
+      position: relative;
+      height: 100%;
+    }
+
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header{
+        display: flex;  
+        align-items: center;
+        width: calc(100% - 40px);
+        position: fixed;
+        top: 1em;
+        left: 50%;
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 80%;
+        transform: translateX(-50%);
+        }
+    .header img{
+        max-width: 55%;
+        height: auto;
+        position: relative;
+        box-sizing: border-box;
+        border-style: none;
+        overflow-clip-margin: content-box;
+        overflow: clip;
+    }
+    .header a img{
+        max-width: 55%;
+        height: auto;
+        position: relative;
+        box-sizing: border-box;
+        border-style: none;
+        overflow-clip-margin: content-box;
+        overflow: clip;
+    }
+    .header__service img {
+        margin-left: 60px;
+        max-width: calc(100% - 20px);
+        height: auto;
+    }
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+ 
+    .swiper-slide {
+      font-size: 18px;
+      background: transparent;
+      display: flex;
+      width: 100%;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .pc-cont {
+        text-align: left;
+        justify-content: left;
+        align-items: left;
+        width: 600px;
+    }
+    .pc-cont1 {
+        text-align: end;
+        justify-content: end;
+        align-items: end;
+        margin-left: 720px;
+        width: 600px;
+    }
+    .pro1 {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        margin: 150px;
+        width: 200px;
+        margin-top: 220px;
+    }
+    .pro2 {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        margin: 150px;
+        width: 200px;
+        margin-top: 220px;
+    }
+
+    
+
+    .video-box[data-v-5ac820ec]{
+        position:fixed;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        pointer-events:none;
+        width:640px;
+        height:90vh
+    }
+    @media(max-width:641px){.video-box[data-v-5ac820ec]{
+        display:none
+
+    }
+}
+    @media(max-width:641px){
+        .pro1 {
+        margin: 100px;
+        width: 160px;
+        margin-top: 120px;
+    }
+    }
+    .video-box .video-bg[data-v-5ac820ec]{
+        z-index:1;
+        bottom:0;
+        right:0;
+        width:99%;
+        height:99%;
+        background:linear-gradient(180deg,rgba(225,175,204,.5),rgba(117,48,227,.5))
+    }
+    .video-box .video-bg[data-v-5ac820ec],.video-box .video-wrap[data-v-5ac820ec]{
+        position:absolute;
+        border-radius:70px 0 70px 0;
+    }
+    .video-box .video-wrap[data-v-5ac820ec]{
+        top:-10px;
+        left:-10px;
+        z-index:2;
+        width:100%;
+        height:100%;
+        overflow:hidden
+    }
+    .h5-video[data-v-5ac820ec],.video-box .video[data-v-5ac820ec]{
+        width:100%;
+        height:100%;
+        -o-object-fit:cover;
+        object-fit:cover
+    }
+
+    .pc-swiper-pagination{
+        padding:20px 2px;
+        position:absolute;
+        top:50%;
+        right:50px;
+        transform:translateZ(0) translateY(-50%)!important;
+        background:#fff;
+        border-radius:15px;
+    }.pc-swiper-pagination .swiper-pagination-bullet{
+        display:block;
+        width:18px;
+        height:52px;
+        border-radius:5px;
+        background:0 0;
+    }
+    .pc-swiper-pagination .swiper-pagination-bullet:not(:last-child){
+        margin-bottom:20px;
+    }.pc-swiper-pagination .swiper-pagination-bullet-active{
+        height:52px;
+        /*background:url(asset/image/game.jpg) 50% no-repeat;transition:.8s;*/
+        background: #8181d5;
+        border-radius: 120px;
+    }
+    .h5-swiper-pagination{
+        display:flex;
+        flex-direction:column;
+        padding:5px 2px;
+        position:absolute;
+        top:50%!important;
+        right:10px!important;
+        transform:translateZ(0) translateY(-50%)!important;
+        border-radius:20px;
+    }
+        .h5-swiper-pagination .swiper-pagination-bullet{
+            display:inline-block!important;
+            width:10px;
+            height:10px;
+            border-radius:50%;
+        }
+        .h5-swiper-pagination .swiper-pagination-bullet:not(:last-child){
+            margin-bottom:10px!important;
+        }.h5-swiper-pagination .swiper-pagination-bullet-active{
+            background-color:#fff;
+        }
+
+  </style>
+</head>
+
+<body>
+    <header class="header">
+        <img src="asset/image/logo.cb93fab.png" alt="" class="header__logo">
+        <a href="" target="_blank" class="header__service">
+          <img src="asset/image/service.f1ef7ed.png" alt="">
+        </a>
+    </header>
+
+    <div class="video-box" data-v-5ac820ec>
+        <div class="video-bg" data-v-5ac820ec></div> 
+
+        <div class="video-wrap" data-v-5ac820ec>
+
+            <video autoplay muted loop playsinline class="video" data-v-5ac820ec><source src="video.11cecb8.mp4" type="video/mp4" data-v-5ac820ec></video>
+
+        </div>
+    </div> 
+    
+  <!-- Swiper -->
+  <div class="swiper mySwiper pc-swiper">
+    
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="pc-cont">
+          <div class="pro1">
+              <img class="img1" src="asset/image/m1.e0691fe.PNG">
+          </div>
+        </div>
+        <div class="pc-cont1">
+          <div class="pro2">
+              <img class="img2" src="asset/image/m2.ce601fc.PNG">
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="pc-cont">
+          <div class="pro1">
+              <img class="img1" src="asset/image/m1.e0691fe.PNG">
+          </div>
+        </div>
+        <div class="pc-cont1">
+          <div class="pro2">
+              <img class="img2" src="asset/image/m2.ce601fc.PNG">
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+          <div class="pc-cont">
+          <div class="pro1">
+              <img class="img1" src="asset/image/m1.e0691fe.PNG">
+          </div>
+        </div>
+        <div class="pc-cont1">
+          <div class="pro2">
+              <img class="img2" src="asset/image/m2.ce601fc.PNG">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="swiper-pagination pc-swiper-pagination" data-v-5ac820ec></div> 
+    <div class="swiper-pagination h5-swiper-pagination"></div>
+
+  </div>
+
+  
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      direction: "vertical",
+      slidesPerView: 1,
+      spaceBetween: 30,
+      mousewheel: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  </script>
+</body>
+
+</html>
+
+
+  
+
+  <!-- Initialize Swiper 
+  <script>
+
+        const myCustomSlider = document.querySelectorAll('.gallery-top');
+        const myCustomGalleryThumbs = document.querySelectorAll('.thumbs-class');
+
+        for (i = 0; i < myCustomSlider.length; i++) {
+
+            myCustomSlider[i].classList.add('gallery-top-' + i);
+            myCustomGalleryThumbs[i].classList.add('thumbs-class-' + i);
+
+            var galleryThumbs = new Swiper('.thumbs-class-' + i , {
+                spaceBetween: 10,
+                slidesPerView: 4,
+                freeMode: true,
+                watchSlidesVisibility: true,
+                watchSlidesProgress: true,
+            });
+
+            var galleryTop = new Swiper('.gallery-top-' + i, {
+                spaceBetween: 10,
+                thumbs: {
+                    // el: '.thumbs-class',
+                    // slidesPerView: 5,
+                    swiper: galleryThumbs
+                }
+            }); 
+
+        }
+
+  </script>-->
